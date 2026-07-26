@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warung Mamang Golek — Pemesanan Makanan Terdistribusi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Karla:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1 class="brand">Warung <span>Mamang Golek</span></h1>
+        <p class="tagline">Sistem pemesanan makanan berbasis microservices</p>
+      </div>
+      <div class="services" id="serviceStatus">
+        <span class="chip" data-name="gateway">gateway :3000</span>
+        <span class="chip" data-name="menu">menu :3001</span>
+        <span class="chip" data-name="order">order :3002</span>
+        <span class="chip" data-name="payment">payment :3003</span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <!-- ================= MENU ================= -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Daftar Menu</h2>
+          <small class="src" id="menuSource">memuat…</small>
+        </div>
+        <div class="menu-grid" id="menuGrid"></div>
+      </section>
+
+      <!-- ================= KERANJANG ================= -->
+      <aside class="panel order-panel">
+        <div class="panel-head">
+          <h2>Pesanan</h2>
+        </div>
+        <label class="field">
+          <span>Nama pelanggan</span>
+          <input type="text" id="customerName" placeholder="cth: Budi" />
+        </label>
+        <div class="cart" id="cartList">
+          <p class="empty">
+            Keranjang kosong.<br />Pilih menu di sebelah kiri.
+          </p>
+        </div>
+        <div class="totals">
+          <span>Total</span>
+          <strong id="cartTotal">Rp0</strong>
+        </div>
+        <button class="btn-order" id="btnOrder">Pesan &amp; Bayar</button>
+        <div class="receipt" id="receipt" hidden></div>
+      </aside>
+
+      <!-- ================= RIWAYAT ================= -->
+      <section class="panel wide">
+        <div class="panel-head">
+          <h2>Riwayat Pesanan</h2>
+          <small class="src" id="orderSource"></small>
+        </div>
+        <div id="orderHistory" class="history"></div>
+      </section>
+
+      <section class="panel wide">
+        <div class="panel-head">
+          <h2>Riwayat Pembayaran</h2>
+          <small class="src" id="paymentSource"></small>
+        </div>
+        <div id="paymentHistory" class="history"></div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" hidden></div>
+
+    <footer class="foot">
+      Mini Project Sistem Terdistribusi — Frontend disajikan oleh API Gateway
+      (:3000), data diambil dari menu-service, order-service &amp;
+      payment-service.
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,433 @@
+/* ===== Warung Mamang Golek — gaya papan menu warung ===== */
+:root {
+  --cream: #faf3e3;
+  --paper: #fffbef;
+  --ink: #221c12;
+  --green: #2f5d3a;
+  --green-dark: #24482d;
+  --tomato: #d9482b;
+  --amber: #e8a13c;
+  --line: #d8cdb4;
+  --radius: 14px;
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Karla", sans-serif;
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(232, 161, 60, 0.14),
+      transparent 34%
+    ),
+    radial-gradient(circle at 90% 90%, rgba(47, 93, 58, 0.1), transparent 40%),
+    var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ---------- Header ---------- */
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 2rem 2.2rem 1.4rem;
+  border-bottom: 3px solid var(--ink);
+}
+.brand {
+  font-family: "Fraunces", serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.brand span {
+  color: var(--tomato);
+  font-style: italic;
+}
+.tagline {
+  color: #6c6250;
+  margin-top: 0.35rem;
+}
+
+.services {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.chip {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  position: relative;
+  padding-left: 1.5rem;
+}
+.chip::before {
+  content: "";
+  position: absolute;
+  left: 0.6rem;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #b7b0a1;
+}
+.chip.up::before {
+  background: #2fa14f;
+  box-shadow: 0 0 6px #2fa14f;
+}
+.chip.down::before {
+  background: var(--tomato);
+}
+
+/* ---------- Layout ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 1.4rem;
+  padding: 1.6rem 2.2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.panel {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 1.3rem;
+  box-shadow: 5px 5px 0 rgba(34, 28, 18, 0.9);
+  animation: rise 0.5s ease both;
+}
+.panel:nth-child(2) {
+  animation-delay: 0.08s;
+}
+.panel:nth-child(3) {
+  animation-delay: 0.16s;
+}
+.panel:nth-child(4) {
+  animation-delay: 0.24s;
+}
+.wide {
+  grid-column: 1 / -1;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 2px dashed var(--line);
+  padding-bottom: 0.6rem;
+  margin-bottom: 1rem;
+}
+.panel-head h2 {
+  font-family: "Fraunces", serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+}
+.src {
+  color: #8a8171;
+  font-size: 0.72rem;
+}
+
+/* ---------- Menu ---------- */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.9rem;
+}
+.card {
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  padding: 0.9rem;
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 3px 4px 0 rgba(34, 28, 18, 0.55);
+}
+.card h3 {
+  font-family: "Fraunces", serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.card .price {
+  color: var(--green);
+  font-weight: 700;
+}
+.badge {
+  align-self: flex-start;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+.badge.ok {
+  background: #d9ecd9;
+  color: var(--green-dark);
+}
+.badge.off {
+  background: #f6d3cb;
+  color: #9c2f18;
+}
+.btn-add {
+  margin-top: auto;
+  font: inherit;
+  font-weight: 700;
+  border: 1.5px solid var(--ink);
+  background: var(--green);
+  color: #fff;
+  padding: 0.45rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-add:hover {
+  background: var(--green-dark);
+}
+.btn-add:disabled {
+  background: #c9c2b2;
+  border-color: #a89f8b;
+  cursor: not-allowed;
+}
+
+/* ---------- Keranjang ---------- */
+.order-panel {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+}
+.field {
+  display: block;
+  margin-bottom: 0.9rem;
+}
+.field span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.field input {
+  width: 100%;
+  font: inherit;
+  padding: 0.55rem 0.7rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 8px;
+  background: var(--cream);
+}
+.cart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 70px;
+}
+.cart .empty {
+  color: #8a8171;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0.8rem 0;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px dashed var(--line);
+  padding-bottom: 0.45rem;
+  font-size: 0.9rem;
+}
+.cart-item .nm {
+  flex: 1;
+  font-weight: 700;
+}
+.qty-btn {
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  background: var(--paper);
+  font-weight: 700;
+  cursor: pointer;
+}
+.qty-btn:hover {
+  background: var(--amber);
+}
+.totals {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.9rem 0;
+  font-size: 1.05rem;
+}
+.totals strong {
+  font-family: "Fraunces", serif;
+  font-size: 1.4rem;
+  color: var(--tomato);
+}
+.btn-order {
+  width: 100%;
+  font: inherit;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.75rem;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--tomato);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 rgba(34, 28, 18, 0.9);
+  transition:
+    transform 0.12s,
+    box-shadow 0.12s;
+}
+.btn-order:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 rgba(34, 28, 18, 0.9);
+}
+.btn-order:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 rgba(34, 28, 18, 0.9);
+}
+
+/* ---------- Struk ---------- */
+.receipt {
+  margin-top: 1rem;
+  border: 2px dashed var(--green);
+  border-radius: 10px;
+  background: #eef5ec;
+  padding: 0.9rem;
+  font-size: 0.85rem;
+  animation: rise 0.35s ease both;
+}
+.receipt h4 {
+  font-family: "Fraunces", serif;
+  color: var(--green-dark);
+  margin-bottom: 0.4rem;
+}
+.receipt table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.receipt td {
+  padding: 0.15rem 0;
+}
+.receipt td:last-child {
+  text-align: right;
+}
+.receipt .grand {
+  border-top: 1px dashed var(--green);
+  font-weight: 700;
+}
+.receipt .paid {
+  display: inline-block;
+  margin-top: 0.5rem;
+  background: var(--green);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+/* ---------- Riwayat ---------- */
+.history {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.history .empty {
+  color: #8a8171;
+  font-size: 0.85rem;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  align-items: center;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.88rem;
+  background: var(--cream);
+}
+.row .id {
+  font-weight: 700;
+  color: var(--tomato);
+}
+.row .money {
+  margin-left: auto;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+.tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.12rem 0.5rem;
+  border-radius: 999px;
+  background: #d9ecd9;
+  color: var(--green-dark);
+}
+
+/* ---------- Toast & footer ---------- */
+.toast {
+  position: fixed;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0.7rem 1.2rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
+  z-index: 50;
+  max-width: 90vw;
+}
+.toast.err {
+  background: #7e2413;
+}
+.foot {
+  text-align: center;
+  color: #8a8171;
+  font-size: 0.78rem;
+  padding: 1.2rem 2rem 2rem;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  .order-panel {
+    position: static;
+  }
+}

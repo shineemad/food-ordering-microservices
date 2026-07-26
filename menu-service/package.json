@@ -1,0 +1,12 @@
+{
+  "name": "menu-service",
+  "version": "1.0.0",
+  "description": "Service untuk mengelola data menu makanan",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
